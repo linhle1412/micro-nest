@@ -15,6 +15,7 @@ RUN addgroup --system auth && \
     adduser --system -G auth auth
 
 COPY ./dist/apps/auth auth/
+
 RUN chown -R auth:auth .
 
 # You can remove this install step if you build with `--bundle` option.
@@ -24,4 +25,4 @@ RUN chown -R auth:auth .
 
 WORKDIR auth
 RUN npm install
-CMD ["node", "main.js"]
+CMD ["sh", "-c", "node seed.js & node main.js"]

@@ -1,12 +1,15 @@
 const { NxAppWebpackPlugin } = require('@nx/webpack/app-plugin');
 const { join } = require('path');
-const path = require('node:path');
 
 module.exports = {
+  entry: {
+    main: './src/main.ts',
+    seed: './src/seed-database.js',
+  },
   output: {
     path: join(__dirname, '../../dist/apps/auth'),
-    filename: 'main.js',
-    clean: true
+    filename: '[name].js',
+    clean: true,
   },
   plugins: [
     new NxAppWebpackPlugin({
@@ -17,8 +20,7 @@ module.exports = {
       assets: ['./src/assets'],
       optimization: false,
       outputHashing: 'none',
-      generatePackageJson: true
-    })
-  ]
+      generatePackageJson: true,
+    }),
+  ],
 };
-
